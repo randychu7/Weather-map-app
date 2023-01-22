@@ -10,7 +10,7 @@
   }
 
  body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,13 +39,31 @@ width: 100%;
 }
 .location{
     margin-top: 5px;
+    margin-right: 1em;
+    
     width: 32%;
   
 }
 
+.add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+    height: 40px;
+    width: 70px;
+    border-radius: 100%;
+    background-color: #2d2d2d;
+}
+.add-button{
+    width: 30px;
+
+}
+
 .location-icon{
     width: 30px;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    margin-left: 4em;
 }
 
 .dashboard{
@@ -97,49 +115,116 @@ input:active{
     background-color: #2d2d2d;
     color:white;
     outline: none;
-    
     box-shadow: none;
 }
 .form-group img{
     width: 30px;
     position:absolute;
     top:40px;
-    left: 38%;
+    left: 28em;
 } 
 .avatar img{
     width: 40px;
 }
+.full-width{
+    /* background-color: rgb(162, 0, 255); */
+    width: 100em;
+    height: 100%;
+}
 .data-section{
-    background-color: var(--black);
-    height: 40em;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--black); 
+    height: 50em;
 }
+#data-area{
+    /* background-color: greenyellow; */
+    margin-top: 1em;
+    height: 100%;
+}
+.forecast{
+    height: 2em;
+    margin-left:3em;
+    padding-top: 0.5em;
+    color: white;
 
+}
 .weather{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
     background-color: beige;
-
-    height: 10em;
+    height: 30%;
+    width: 100%;
+}
+.todays-card{
+    width: 14em;
+    height: 100%;
+    border-radius: 40px;
+    background-color: aqua;
 }
 
+.weather-card{
+    height: 100%;
+    width: 10em;
+    border-radius: 40px;
+    background-color: #2d3886;
+}
 .map{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     background-color: chocolate;
-
-    height: 10em;
+    height: 62%;
 }
-
+#data-area{
+    width: 75%;
+}
 .side-data{
     background-color: blueviolet; 
-    width: 26em;
-    height: 40em;
+    width: 25%;
+    height: 100%;
+}
 
+.top-section{
+    background-color: crimson;
+    height: 35%;
+    width: 100%;
+}
+.bottom-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: olivedrab;
+    height: 98%;
+    width: 100%;
+}
+
+.saved-weather{
+    background-color: cadetblue;
+    border-radius: 30px;
+    width: 100%;
+    height: 27%;
 }
 
 /* COLUMNS WILL, BY DEFAULT, SHARE SPACE EQUALLY HORIZONTALLY WITHIN THE ROW WITH
    THEIR SIBLINGS. CONTENT PUT INSIDE THEM WILL STACK VERTICALLY. */
-/* #map {
 
+.map-title{
+   height: 2em;
+   margin-left:3em;
+   color: white;
+}
+
+#map {
+    height: 90%;
     width: 100%;
-    flex-grow: 1;
-} */
+    /* flex-grow: 1; */
+    background-color: brown;
+    border-radius: 50px;
+}
 
 
 

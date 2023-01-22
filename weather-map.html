@@ -17,14 +17,18 @@
          <div class="page-wrapper">
                     <div class = "data-container"> 
                          <div class = "dashboard">
-                                <header class="container" id = "nav-bar">
-                                        <div class = "greeting" style = "color: white;">Greetings, Randy <br> <span id = "fade-greeting">Have a nice day</span></div>
-                                        <img class = "location-icon" src ="images/white-Icon.png">
-                                         <div class = "location" style = "color: white;""><h5>San Antonio, Texas</h5> </div> 
+                                <header class="container-xxl" id = "nav-bar">
+                                         <div class = "add"><img class = "add-button" src ="./images/add-icon.png"></div>
+
+                                        <img class = "location-icon" src ="./images/white-Icon.png">
+                                        <div class = "location" style = "color: white;""><h5>San Antonio, Texas</h5> </div> 
+                                        
                                          <div class="form-group">
                                             <img src="./images/search-icon.png" class = "search-icon">
                                             <input class="form" id="email" name="email" type="text" placeholder="Search city..."/>
                                         </div>
+                                       
+                                        <div class = "greeting" style = "color: white;">Welcome, Randy <br> <span id = "fade-greeting">Have a great day</span></div>
                                         <div class = "avatar"><img src = "images/grid_0.png"></div>
                                 </header>
 
@@ -35,18 +39,33 @@
                                 <main class="data-section container-xxl">
 
                                         <div class="row full-width"> 
-                                                    <div class ="col-xxl-8">
-                                                        <div class="column weather">
+                                                    <div class ="col-xxl-8 col-xs-12" id = "data-area">
+                                                        <div class = "forecast"> Forecast</div>   
+                                                        <div class="column weather col-xxl-12">
+                                                                        <div class="todays-card"></div>
+                                                                        <div class="weather-card"></div>
+                                                                        <div class="weather-card"></div>
+                                                                        <div class="weather-card"></div>
+                                                                        <div class="weather-card"></div>
+                                                            </div>
                                                             
-                                                        </div>
-                                                        <div class="column map">
-                                                            <div id='map'></div>
-                                                        </div>
+                                                            <div class="column map col-xxl-12">
+                                                                <div class = "map-title">Weather Map</div>
+                                                                <div id='map'></div>
+                                                            </div>
                                                     </div>
 
 
-                                                    <div class="col-xxl-4 side-data">
-                                                    
+                                                    <div class="col-xxl-4 col-xs-12 side-data">
+                                                            
+                                                            <div class ="bottom-section">
+                                                                <h3>Saved Weather</h3>
+                                                                <div class = "saved-weather"></div>
+                                                                <div class = "saved-weather"></div>
+                                                                <div class = "saved-weather"></div>
+                                                                <div class = "saved-weather"></div>
+                                                                <div class = "saved-weather"></div>
+                                                            </div>
                                                     </div>
                                                     
 
