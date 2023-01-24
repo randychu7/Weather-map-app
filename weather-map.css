@@ -272,6 +272,10 @@ margin: 0 !important;
 }
 
 .day-week{
+    text-align: center;
+    color: white;
+}
+.day-week{
     /* background-color: darkorange; */
     width: 100%;
     height: 10%;
@@ -285,15 +289,17 @@ margin: 0 !important;
 }
 
 .stat-left{
+    margin-left:15px;
     color:white;
-    font-size: 10px;
+    font-size: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
 .stat-right{
-    font-size: 30px;
+    margin-right:10px;
+    font-size: 15px;
     color:white;
     display: flex;
     flex-direction: column;
