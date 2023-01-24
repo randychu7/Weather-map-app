@@ -272,16 +272,34 @@ margin: 0 !important;
 }
 
 .day-week{
-    background-color: darkorange;
+    /* background-color: darkorange; */
     width: 100%;
     height: 10%;
    
 }
 
 .day-info{
-    background-color: darkorange;
+    /* background-color: darkorange; */
     width: 100%;
     height: 40%;
+}
+
+.stat-left{
+    color:white;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-right{
+    font-size: 30px;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 
