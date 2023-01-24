@@ -74,45 +74,60 @@ $(document).ready(function(){
     mapboxgl.accessToken = keys.mapbox;
     let map = new mapboxgl.Map({
         
-        container: "map",
-        style: 'mapbox://styles/randychu7/cldafxh0n008q01qazzg7rt2m',
-        zoom: 10,
-        center: [-98.4916, 29.4252]
+    container: "map",
+    style: 'mapbox://styles/randychu7/cldafxh0n008q01qazzg7rt2m',
+    zoom: 10,
+    center: [-98.4916, 29.4252]
 
-        });
-        // Create the starting marker and make it draggable
-        let marker = new mapboxgl.Marker({draggable: true})
-        .setLngLat([-98.4916, 29.4252])
-        .addTo(map);
+    });
 
-        //Marker on drag stores the long and lat inside a variable
-        marker.on('dragend', function() {
-        let lngLat = marker.getLngLat();
-        let longitude = lngLat.lng;
-        // console.log(longitude);
-        let latitude = lngLat.lat;
-        map.flyTo({center: lngLat, zoom: 12});
-        
 
+    // Create the starting marker and make it draggable
+    let marker = new mapboxgl.Marker({draggable: true})
+    .setLngLat([-98.4916, 29.4252])
+    .addTo(map);
+
+    //Marker on drag stores the long and lat inside a variable
+    marker.on('dragend', function() {
+    let lngLat = marker.getLngLat();
+    let longitude = lngLat.lng;
+    console.log(longitude);
+    let latitude = lngLat.lat;
+    console.log(latitude);
+    map.flyTo({center: lngLat, zoom: 12});
+    reverseGeocode({lng: longitude, lat: latitude}, keys.mapbox).then(function(results) {
     
+        // results= results.slice(25, 41);
+        let address = results.split(',');
+         address.splice(0,1);
+         address.splice(-1,1);
+        
+         
+        
+        $('.location').html(address);
+    });
 
+
+    //Get weather data on the markers location
     $.get('https://api.openweathermap.org/data/2.5/forecast', {
-    lat: latitude,  //Use the variable inside the api request
+    lat: latitude, 
     lon: longitude,
     appid: keys.weather
 , 
     units: 'imperial' 
     
-                }).done(function(data) {
-                $('.data').empty();
-                generateCards(data);
-               
-                  }).fail(function(jqXhr, status, error) {
-                    console.log(jqXhr);
-                    console.log(status);
-                    console.log(error);
-                })});
-    
+    }).done(function(data) {
+    $('.data').empty();
+    generateCards(data);
+
+    }).fail(function(jqXhr, status, error) {
+    console.log(jqXhr);
+    console.log(status);
+    console.log(error);
+    })});
+
+
+
 
     //Get weather data for starting point
     $.get('https://api.openweathermap.org/data/2.5/forecast', {
@@ -133,7 +148,7 @@ $(document).ready(function(){
 });
 
 
-// On click fly to location on map
+// On click fly to location on map base on input
  $('#button-addon1').on('click', function(){
     let value = $('.form-control').val();
     geocode(value, keys.mapbox).then(function(result) {
@@ -194,6 +209,9 @@ $('#button-addon1').on('click', function(){
     console.log(status);
     console.log(error);
 })});
+
+
+
 
 function generateCards(data){
     for (let i = 0; i < data.list.length; i += 8) {

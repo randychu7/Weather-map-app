@@ -46,7 +46,7 @@ width: 100%;
 .location{
     margin-top: 5px;
     margin-right: 6em;
-    width: 15%;
+    width: 40%;
   
 }
 
@@ -57,7 +57,7 @@ width: 100%;
 }
 
 .dashboard{
-    min-height: 96vh;
+    min-height: 100vh;
     background-color: #0f0e12;
     width: 96%;
     border-radius: 40px;
@@ -69,7 +69,7 @@ width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width:100%;
+    width:95%;
     height: 100%;
     /* background-color: rgb(182, 182, 182); */
 }
@@ -186,15 +186,24 @@ h6{
     height: 100%;
     width: 15%;
     border-radius: 40px;
-    background-color: var(--grey);
+    background-image:linear-gradient(335deg, #1a1628, var(--grey)); 
+    /* box-shadow: 5px 5px 20px var(--blue); */
    
 }
+
+.weather-card:hover{
+    transform: scale(1.05);
+    transition: 0.5s;
+
+}
 .map{
+   
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     /* background-color: chocolate; */
-    height: 62%;
+    height: 70%;
+  
 }
 
 .side-data{
@@ -205,8 +214,8 @@ h6{
 
 .top-section{
     margin-top: 1em;
-    background-image: url("/images/cloud1.png");
-    background-color: crimson;
+    /* background-image: url("/images/cloud1.png"); */
+    /* background-color: crimson; */
     border-radius: 40px;;
     height: 30%;
     width: 100%;
@@ -245,7 +254,7 @@ h6{
     height: 90%;
     width: 100%;
     /* flex-grow: 1; */
-    background-color: brown;
+    /* background-color: brown; */
     border-radius: 50px;
 }
 
