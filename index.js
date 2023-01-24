@@ -12,6 +12,7 @@ $(document).ready(function(){
             c10.8,0,21.1,2.2,30.4,6.1C163.7,60.7,206.3,32,256,32s92.3,28.7,113.5,70.1c9.4-3.9,19.7-6.1,30.5-6.1c44.2,0,80,35.8,80,80
             S444.2,256,400,256z" />
         </svg>`,
+      
         'Sunny': `<svg class="sunshine" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
         <path class="sun-full" d="M256,144c-61.8,0-112,50.2-112,112s50.2,112,112,112s112-50.2,112-112S317.8,144,256,144z M256,336
             c-44.2,0-80-35.8-80-80s35.8-80,80-80s80,35.8,80,80S300.2,336,256,336z" />
@@ -28,6 +29,7 @@ $(document).ready(function(){
             c-6.2,6.2-6.2,16.4,0,22.6L131.5,154.2z" />
         <path class="sun-ray-one" d="M112,256c0-8.8-7.2-16-16-16H64c-8.8,0-16,7.2-16,16s7.2,16,16,16h32C104.8,272,112,264.8,112,256z" />
       </svg> `,
+     
       'Clouds':  `<svg class="sun-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
       <path class="sun-half" d="M127.8,259.1c3.1-4.3,6.5-8.4,10-12.3c-6-11.2-9.4-24-9.4-37.7c0-44.1,35.7-79.8,79.8-79.8
           c40,0,73.1,29.4,78.9,67.7c11.4,2.3,22.4,5.7,32.9,10.4c-0.4-29.2-12-56.6-32.7-77.3C266.1,109,238,97.4,208.2,97.4
@@ -51,6 +53,7 @@ $(document).ready(function(){
           c-6.2,6.2-6.2,16.4,0,22.6S326.2,112.4,332.4,106.2z" />
       <path class="ray ray-five" d="M352,208c0,8.8,7.2,16,16,16h32c8.8,0,16-7.2,16-16s-7.2-16-16-16h-32C359.2,192,352,199.2,352,208z" />
     </svg>`,
+    
     'Clear': `<svg class="windy-cloud" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
     <g class="cloud-wrap">
     <path class="cloud" d="M417,166.1c-24-24.5-57.1-38.8-91.7-38.8c-34.6,0-67.7,14.2-91.7,38.8c-52.8,2.5-95,46.2-95,99.6
@@ -64,31 +67,34 @@ $(document).ready(function(){
     <path class="wind-two" d="M16,320h94c8.8,0,16-7.2,16-16s-7.2-16-16-16H16c-8.8,0-16,7.2-16,16S7.2,320,16,320z" />
     <path class="wind-one" d="M16,256h64c8.8,0,16-7.2,16-16s-7.2-16-16-16H16c-8.8,0-16,7.2-16,16S7.2,256,16,256z" />
   </svg>`
-
     }
+
+ 
 
     mapboxgl.accessToken = keys.mapbox;
     let map = new mapboxgl.Map({
         
         container: "map",
-        style: 'mapbox://styles/randychu7/cld4u7lhq000d01o2otr7r35o',
+        style: 'mapbox://styles/randychu7/cldafxh0n008q01qazzg7rt2m',
         zoom: 10,
         center: [-98.4916, 29.4252]
 
         });
-    // Create the starting marker and make it draggable
-    let marker = new mapboxgl.Marker({draggable: true})
-    .setLngLat([-98.4916, 29.4252])
-    .addTo(map);
+        // Create the starting marker and make it draggable
+        let marker = new mapboxgl.Marker({draggable: true})
+        .setLngLat([-98.4916, 29.4252])
+        .addTo(map);
 
-    //Marker on drag stores the long and lat inside a variable
-    marker.on('dragend', function() {
-    let lngLat = marker.getLngLat();
-    let longitude = lngLat.lng;
-    // console.log(longitude);
-    let latitude = lngLat.lat;
-    // console.log (latitude)
+        //Marker on drag stores the long and lat inside a variable
+        marker.on('dragend', function() {
+        let lngLat = marker.getLngLat();
+        let longitude = lngLat.lng;
+        // console.log(longitude);
+        let latitude = lngLat.lat;
+        map.flyTo({center: lngLat, zoom: 12});
+        
 
+    
 
     $.get('https://api.openweathermap.org/data/2.5/forecast', {
     lat: latitude,  //Use the variable inside the api request
@@ -99,41 +105,16 @@ $(document).ready(function(){
     
                 }).done(function(data) {
                 $('.data').empty();
-                for (let i = 0; i < data.list.length; i += 8) {
-                    const d = new Date(`${data.list[i].dt_txt}`);
-                    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-                    const day = weekday[d.getDay()];
-                    //   console.log(data.list[i]);
-                    //   console.log(data.list[i].main);
-                   
-                    let html =                  `
-                                  
-                    <div class="weather-card rain">
-                    <div class = "day-week">${day}</div>
-                    ${weatherImages[data.list[i].weather[0].main]}
-
-                        <h6>${data.list[i].weather[0].main}</h6>
-                        <div class = "day-info d-flex ">
-                            <div class = "stat-left" style=" height: 100%; width: 50%;">
-                                <div><img src = images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
-                                <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
-                                <div><img src = "images/pressure.png" style = "width: 30px;"> ${data.list[i].main.pressure}</div>
-                                </div>
-                                <div class = "stat-right d-flex" style=" height: 100%; width: 50%;">
-                                ${data.list[i].main.temp}°
-                             </div>
-                        </div>
-                </div>`
-
-                        $('.data').append(html);
-}
+                generateCards(data);
+               
                   }).fail(function(jqXhr, status, error) {
                     console.log(jqXhr);
                     console.log(status);
                     console.log(error);
                 })});
     
-    //Get weather data
+
+    //Get weather data for starting point
     $.get('https://api.openweathermap.org/data/2.5/forecast', {
     q: "San Antonio, Texas",
     lat: 29.4252,
@@ -144,39 +125,12 @@ $(document).ready(function(){
     
   }).done(function(data) {
     $('.data').empty();
-    for (let i = 0; i < data.list.length; i += 8) {
-        const d = new Date(`${data.list[i].dt_txt}`);
-        const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        const day = weekday[d.getDay()];
-   
-        let html =                  `          
-        <div class="weather-card rain">
-        <div class = "day-week">${day}</div>
-        ${weatherImages[data.list[i].weather[0].main]}
-
-            <h6>${data.list[i].weather[0].main}</h6>
-            <div class = "day-info d-flex ">
-                <div class = "stat-left" style=" height: 100%; width: 50%;">
-                    <div><img src = "images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
-                    <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
-                    <div><img src = "images/pressure.png" style = "width: 30px;"> ${data.list[i].main.pressure}</div>
-                    </div>
-                    <div class = "stat-right d-flex" style=" height: 100%; width: 50%;">
-                    ${data.list[i].main.temp}°
-                 </div>
-            </div>
-    </div>`
-
-            $('.data').append(html);
-}
+    generateCards(data);
   }).fail(function(jqXhr, status, error) {
     console.log(jqXhr);
     console.log(status);
     console.log(error);
 });
-
-
-
 
 
 // On click fly to location on map
@@ -188,66 +142,43 @@ $(document).ready(function(){
         {center: result,
         essential: true}
         )
-           
-            marker.setLngLat(result).addTo(map);
+       marker.setLngLat(result).addTo(map);
+        //Allows Marker to be dragged
+        marker.on('dragend', function() {
+        //Variable that is getting the the long and lat of marker
+        let lngLat = marker.getLngLat();
+        //variable that is taking the lng
+        let longitude = lngLat.lng;
+        //variable that is taking the lat
+        let latitude = lngLat.lat;
+        map.flyTo({center: lngLat, zoom: 12});
 
-
-                marker.on('dragend', function() {
-                let lngLat = marker.getLngLat();
-                let longitude = lngLat.lng;
-                // console.log(longitude);
-                let latitude = lngLat.lat;
-
-
+                //API request
                 $.get('https://api.openweathermap.org/data/2.5/forecast', {
-                    lat: latitude,  //Use the variable inside the api request
+                    lat: latitude,  
                     lon: longitude,
                 appid: keys.weather
                 , 
                 units: 'imperial' 
             }).done(function(data) {
                 $('.data').empty();
-                for (let i = 0; i < data.list.length; i += 8) {
-                    const d = new Date(`${data.list[i].dt_txt}`);
-                    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-                    const day = weekday[d.getDay()];
-                    
-                            
-                                let html = `<div class="weather-card rain">
-                                <div class = "day-week">${day}</div>
-                                ${weatherImages[data.list[i].weather[0].main]}
+                generateCards(data);
 
-                                    <h6>${data.list[i].weather[0].main}</h6>
-                                    <div class = "day-info d-flex ">
-                                        <div class = "stat-left" style=" height: 100%; width: 50%;">
-                                            <div><img src = "images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
-                                            <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
-                                            <div><img src = "images/pressure.png" style = "width: 30px;"> ${data.list[i].main.pressure}</div>
-                                            </div>
-                                            <div class = "stat-right d-flex" style=" height: 100%; width: 50%;">
-                                            ${data.list[i].main.temp}°
-                                         </div>
-                                    </div>
-                            </div>`
-                        
-                            $('.data').append(html);
-
-                            
-                             
-    }
   }).fail(function(jqXhr, status, error) {
     console.log(jqXhr);
     console.log(status);
     console.log(error);
 })});
-
-
         })});
   
      
-// On Search Lookup the weather information
+
+// On Click will lookup the weather information
 $('#button-addon1').on('click', function(){
   let value = $('.form-control').val();
+  let header = "";
+  header+=(`${value.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase())}`)
+  console.log(value);
 
   $.get('https://api.openweathermap.org/data/2.5/forecast', {
     q: value,
@@ -255,52 +186,44 @@ $('#button-addon1').on('click', function(){
 , 
     units: 'imperial' 
   }).done(function(data) {
-    // can be used to get forecast conditions at current time in increments of 24 hours
     $('.data').empty();
-    for (let i = 0; i < data.list.length; i += 8) {
-    const d = new Date(`${data.list[i].dt_txt}`);
-    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    const day = weekday[d.getDay()];
-    //   console.log(data.list[i]);
-    //   console.log(data.list[i].main);
-   
-    let html =                  `
-                                  
-    <div class="weather-card rain">
-    <div class = "day-week">${day}</div>
-    ${weatherImages[data.list[i].weather[0].main]}
-
-        <h6>${data.list[i].weather[0].main}</h6>
-        <div class = "day-info d-flex ">
-            <div class = "stat-left" style=" height: 100%; width: 50%;">
-                <div><img src = "images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
-                <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
-                <div><img src = "images/pressure.png" style = "width: 30px;"> ${data.list[i].main.pressure}</div>
-                </div>
-                <div class = "stat-right d-flex" style=" height: 100%; width: 50%;">
-                ${data.list[i].main.temp}°
-             </div>
-        </div>
-</div>`
-
-        $('.data').append(html);
-}
+    $('.location').empty().append(header);
+    generateCards(data);
   }).fail(function(jqXhr, status, error) {
     console.log(jqXhr);
     console.log(status);
     console.log(error);
 })});
 
+function generateCards(data){
+    for (let i = 0; i < data.list.length; i += 8) {
+        const d = new Date(`${data.list[i].dt_txt}`);
+        const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        const day = weekday[d.getDay()];
+        let temperature = data.list[i].main.temp.toFixed(0);
+       
+        let html =                  `                    
+        <div class="weather-card rain">
+        <div class = "day-week">${day}</div>
+        <div class = "date-format"><p>${data.list[i].dt_txt.slice(0,10)}</p></div>
+        ${weatherImages[data.list[i].weather[0].main]}
+            <h6>${data.list[i].weather[0].main}</h6>
+            
+            <div class = "day-info d-flex ">
+                <div class = "stat-left" style=" height: 100%; width: 50%;">
+                    <div><img src = "images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
+                    <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
+                    <div><img src = "images/pressure.png" style = "width: 30px;"> ${data.list[i].main.pressure}</div>
+                    </div>
+                    <div class = "stat-right d-flex" style=" height: 100%; width: 50%;">
+                    ${temperature}°
+                 </div>
+            </div>
+    </div>`
 
-
-
-
-
-
-
-
-
-
+            $('.data').append(html);
+}
+}
 
 
 
