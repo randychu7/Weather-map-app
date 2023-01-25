@@ -136,7 +136,6 @@ $(document).ready(function(){
     console.log(latitude);
     map.flyTo({center: lngLat, zoom: 12});
     reverseGeocode({lng: longitude, lat: latitude}, keys.mapbox).then(function(results) {
-    
         // results= results.slice(25, 41);
         let address = results.split(',');
          address.splice(0,1);
