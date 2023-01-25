@@ -211,8 +211,6 @@ $('#button-addon1').on('click', function(){
 })});
 
 
-
-
 function generateCards(data){
     for (let i = 0; i < data.list.length; i += 8) {
         const d = new Date(`${data.list[i].dt_txt}`);
@@ -221,13 +219,13 @@ function generateCards(data){
         let temperature = data.list[i].main.temp.toFixed(0);
        
         let html =                  `                    
-        <div class="weather-card rain">
+        <div class="weather-card rain col-xl-2">
         <div class = "day-week">${day}</div>
         <div class = "date-format"><p>${data.list[i].dt_txt.slice(0,10)}</p></div>
         ${weatherImages[data.list[i].weather[0].main]}
             <h6>${data.list[i].weather[0].main}</h6>
             
-            <div class = "day-info d-flex ">
+            <div class = "day-info d-flex">
                 <div class = "stat-left" style=" height: 100%; width: 50%;">
                     <div><img src = "images/windspeedwhite.png" style = "width: 30px;">${data.list[i].wind.speed} mph</div>
                     <div><img src = "images/humiditywhite.png" style = "width: 30px;"> ${data.list[i].main.humidity}%</div>
@@ -242,12 +240,6 @@ function generateCards(data){
             $('.data').append(html);
 }
 }
-
-
-
-
-
-
 
 
 

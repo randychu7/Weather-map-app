@@ -46,7 +46,7 @@ width: 100%;
 .location{
     margin-top: 5px;
     margin-right: 6em;
-    width: 40%;
+    width: 20%;
   
 }
 
@@ -142,13 +142,17 @@ width: 100%;
 }
 #data-area{
     /* background-color: greenyellow; */
+    display: flex;
+    
+    align-items: center;
+    flex-direction: column;
     margin-top: 1em;
     height: 100%;
     width:100em;
 }
 .forecast{
     height: 2em;
-    margin-left:3em;
+    margin-left:-67em;
     padding-top: 0.5em;
     color: white;
 
@@ -161,7 +165,7 @@ width: 100%;
     justify-content: space-between;
     /* background-color: beige; */
     height: 30%;
-    width: 100%;
+    width: 80%;
 }
 h6{
     opacity: 40%;
@@ -201,8 +205,11 @@ h6{
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* background-color: chocolate; */
-    height: 70%;
+    height: 60%;
+    width:80%;
   
 }
 
@@ -246,7 +253,7 @@ h6{
 
 .map-title{
    height: 2em;
-   margin-left:3em;
+   margin-left:-66em;
    color: white;
 }
 
@@ -298,7 +305,7 @@ margin: 0 !important;
 .stat-left{
     margin-left:15px;
     color:white;
-    font-size: 8px;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
